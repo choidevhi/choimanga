@@ -1,0 +1,12 @@
+engine/.venv/
+engine/models/
+engine/setup.log
+engine/samples/out*/
+engine/samples/det_*.png
+engine/samples/dbg_*.png
+__pycache__/
+.pytest_cache/
+app/node_modules/
+app/dist/
+app/src-tauri/target/
+app/src-tauri/gen/

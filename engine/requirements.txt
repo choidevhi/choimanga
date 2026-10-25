@@ -1,0 +1,11 @@
+transformers>=4.46,<5
+huggingface_hub
+fugashi
+unidic-lite
+jaconv
+onnxruntime
+opencv-python-headless
+numpy
+pillow
+pytest
+fonttools

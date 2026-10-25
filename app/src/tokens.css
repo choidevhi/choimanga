@@ -1,0 +1,152 @@
+/* ChoiManga 화면. TDS(토스 디자인 시스템) 토큰은 choicomfy/desktop/web/src/styles.css 에서 값 그대로 가져왔다.
+   라이트/다크는 Windows 앱 테마(prefers-color-scheme)를 따른다.
+   규칙: 선택·현재·포커스·입력 중 상태는 테두리(border, outline, inset box-shadow)로 보이지 않는다. 채움과 은은한 색만 쓴다. */
+
+:root {
+  color-scheme: light;
+  /* TdsPalette + LightTdsColors */
+  --grey50: #f9fafb;
+  --grey100: #f2f4f6;
+  --grey200: #e5e8eb;
+  --grey300: #d1d6db;
+  --grey400: #b0b8c1;
+  --grey500: #8b95a1;
+  --grey600: #6b7684;
+  --grey700: #4e5968;
+  --grey800: #333d4b;
+  --grey900: #191f28;
+  --tds-background: var(--grey100);
+  --tds-surface: #ffffff;
+  --tds-layer: #ffffff;
+  --tds-primary: #3182f6;
+  --tds-primary-pressed: #2272eb;
+  --tds-primary-weak: #e8f3ff;
+  --tds-primary-weak-pressed: #c9e2ff;
+  --tds-danger: #f04452;
+  --tds-danger-weak: #ffeeee;
+  --tds-success: #03b26c;
+  --tds-success-weak: #f0faf6;
+  --tds-warning: #fe9800;
+  --tds-warning-weak: #fff3e0;
+  --tds-purple: #a234c7;
+  --tds-purple-weak: #f9f0fc;
+  --tds-teal: #18a5a5;
+  --tds-teal-weak: #edf8f8;
+  --tds-toast: var(--grey800);
+  --tds-scrim: rgba(0, 0, 0, 0.4);
+  --tds-pressed: rgba(25, 31, 40, 0.04);
+  /* TdsTextField: grey100 at 85 % on a card, the card's white on the grey page. */
+  --field-weak: rgba(242, 244, 246, 0.85);
+  --field-bg: var(--tds-surface);
+  /* The segmented control's track and raised pill. */
+  --seg-track: rgba(229, 232, 235, 0.7);
+  --seg-pill: #ffffff;
+  --seg-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  /* Toss draws flat cards; only floating things (toast, dock, pill) lift off the page. */
+  --elev-1: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --elev-2: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --elev-3: 0 8px 28px rgba(0, 0, 0, 0.14);
+  /* The spring of Toss's press (dampingRatio 0.6, stiffness 900) as a CSS curve. */
+  --press: cubic-bezier(0.3, 1.5, 0.6, 1);
+  /* TdsIcons.Check, drawn with mask-image. */
+  --check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  /* TdsIcons.ChevronRight for rows that open something. */
+  --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9.5 6l6 6-6 6' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  /* The M3 role names the feature stylesheets were written with, now TDS. */
+  --surface: var(--tds-background);
+  --surface-low: var(--tds-surface);
+  --surface-container: var(--grey100);
+  --surface-high: var(--grey100);
+  --surface-highest: var(--grey200);
+  --surface-lowest: var(--tds-surface);
+  --on-surface: var(--grey900);
+  --on-surface-variant: var(--grey600);
+  --outline: var(--grey300);
+  --outline-variant: var(--grey200);
+  --primary: var(--tds-primary);
+  --on-primary: #ffffff;
+  --primary-container: var(--tds-primary-weak);
+  --on-primary-container: var(--tds-primary);
+  --on-primary-container-soft: var(--grey600);
+  --secondary-container: var(--grey100);
+  --on-secondary-container: var(--grey700);
+  --tertiary-container: var(--tds-warning-weak);
+  --on-tertiary-container: var(--grey800);
+  --error: var(--tds-danger);
+  --error-container: var(--tds-danger-weak);
+  --inverse-surface: var(--tds-toast);
+  --inverse-on-surface: #ffffff;
+
+  /* The names the screens and feature styles use. */
+  --bg: var(--tds-background);
+  --sidebar: var(--tds-surface);
+  --card: var(--tds-surface);
+  --sheet: var(--tds-surface);
+  --alert: var(--tds-surface);
+  --fill: var(--grey100);
+  --fill-strong: var(--grey200);
+  --label: var(--grey900);
+  --secondary: var(--grey600);
+  --tertiary: var(--grey400);
+  --separator: var(--grey100);
+  --blue: var(--tds-primary);
+  --on-blue: #ffffff;
+  --green: var(--tds-success);
+  --red: var(--tds-danger);
+  --orange: var(--tds-warning);
+  --purple: var(--tds-purple);
+  --teal: var(--tds-teal);
+  --gray: var(--grey500);
+  --indigo: var(--tds-primary-pressed);
+  --pink: var(--tds-danger);
+  --thumb: #ffffff;
+  --shadow: none;
+  --hud: var(--tds-toast);
+  --dim: var(--tds-scrim);
+}
+
+/* DarkTdsColors: grey900 is the lightest text, grey50 the raised layer. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --grey50: #202027;
+    --grey100: #2c2c35;
+    --grey200: #3c3c47;
+    --grey300: #4d4d59;
+    --grey400: #62626d;
+    --grey500: #7e7e87;
+    --grey600: #9e9ea4;
+    --grey700: #c3c3c6;
+    --grey800: #e4e4e5;
+    --grey900: #ffffff;
+    --tds-background: #101013;
+    --tds-surface: #1c1c21;
+    --tds-layer: #101013;
+    --tds-primary: #3485fa;
+    --tds-primary-pressed: #2b7aee;
+    --tds-primary-weak: #1b2a44;
+    --tds-primary-weak-pressed: #22355a;
+    --tds-danger: #f25e6b;
+    --tds-danger-weak: #3a1e23;
+    --tds-success: #15c47e;
+    --tds-success-weak: #15302a;
+    --tds-warning: #ffa927;
+    --tds-warning-weak: #3a2c16;
+    --tds-purple: #c770e4;
+    --tds-purple-weak: #33223b;
+    --tds-teal: #35c2c2;
+    --tds-teal-weak: #173233;
+    --tds-toast: #3c3c47;
+    --tds-scrim: rgba(0, 0, 0, 0.6);
+    --tds-pressed: rgba(255, 255, 255, 0.08);
+    --field-weak: var(--grey100);
+    --field-bg: var(--grey100);
+    --seg-track: var(--grey100);
+    --seg-pill: var(--grey300);
+    --seg-shadow: none;
+    --elev-1: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --elev-2: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --elev-3: 0 8px 28px rgba(0, 0, 0, 0.5);
+  }
+}

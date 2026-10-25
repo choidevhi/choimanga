@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ChoiManga",
+  "version": "0.1.0",
+  "identifier": "com.choidev.manga",
+  "build": {
+    "beforeDevCommand": "corepack pnpm dev",
+    "devUrl": "http://localhost:1427",
+    "beforeBuildCommand": "corepack pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data: asset: http://asset.localhost; img-src 'self' data: asset: http://asset.localhost; connect-src ipc: http://ipc.localhost",
+      "assetProtocol": {
+        "enable": true,
+        "scope": ["**"]
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "publisher": "choidev",
+    "shortDescription": "일본 만화를 한국어로 덮어 쓰기",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["Korean", "English"]
+      }
+    }
+  },
+  "mainBinaryName": "ChoiManga"
+}
