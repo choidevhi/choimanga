@@ -2,6 +2,59 @@
 
 일본 만화 그림의 일본어를 이 PC 안에서만 읽고 번역해 한국어로 덮어 주는 개인용 Windows 앱. 파일이나 폴더를 넣으면 번역본 폴더가 생긴다. 앱 명세는 `SPEC.md`.
 
+## 처음 설치하기
+
+저장소에는 모델과 설치 파일이 들어 있지 않다. 아래 순서로 한 번 준비하면 그 뒤로는 인터넷 없이 돈다.
+
+**필요한 것**
+
+- Windows 10/11 64비트
+- NVIDIA 그래픽카드(VRAM 12GB 이상 권장: 번역 모델 약 7GB + 엔진 약 2GB). RTX 50 시리즈는 CUDA 12.8 이상을 지원하는 최신 드라이버가 필요하다. 그래픽카드가 없으면 CPU로도 돌지만 한 장에 몇 분 걸린다.
+- 디스크 약 15GB(엔진 환경과 모델 6GB, 번역 모델 7GB)
+- [uv](https://docs.astral.sh/uv/) (`winget install astral-sh.uv`), [Ollama](https://ollama.com/download)
+- 앱을 직접 빌드할 때만: [Rust](https://rustup.rs/), Node.js 22 이상(pnpm은 `corepack`으로)
+
+**1. 저장소 받기**
+
+```
+git clone https://github.com/choidevhi/choimanga.git %USERPROFILE%\Desktop\choimanga
+```
+
+앱은 엔진을 `%USERPROFILE%\Desktop\choimanga\engine`에서 찾는다. 다른 곳에 두면 앱 설정의 "엔진 폴더"를 바꾼다.
+
+**2. 엔진 환경과 모델** (약 6GB 받음)
+
+```
+powershell -ExecutionPolicy Bypass -File engine\setup.ps1
+```
+
+Python 3.12 가상환경(`engine\.venv`), CUDA용 torch, 글자 찾기·읽기·지우기 모델(`engine\models`)을 준비한다.
+
+**3. 번역 모델 (Ollama)**
+
+앱은 Ollama에 있는 모델 이름으로 번역한다. 기본 이름은 `ko-edit`이고, 설정에서 Ollama에 있는 다른 모델로 바꿀 수 있다. 시험에 쓴 모델은 gemma 12B 계열이다.
+
+```
+ollama pull huihui_ai/gemma-4-abliterated:12b
+ollama cp huihui_ai/gemma-4-abliterated:12b ko-edit
+```
+
+다른 모델을 써도 된다(`ollama pull <모델>` 뒤 앱 설정에서 고르기). 한국어를 잘하는 10B 이상 모델이 자연스럽다. 번역 지시문은 엔진(`engine\choimanga\translate.py`)이 보내므로 Modelfile을 따로 만들 필요는 없다.
+
+**4. 앱 빌드와 설치**
+
+```
+cd app
+corepack pnpm install
+corepack pnpm tauri build
+```
+
+`app\src-tauri\target\release\bundle\nsis\ChoiManga_<버전>_x64-setup.exe`를 실행해 설치한다(사용자 계정에만 설치, 관리자 권한 필요 없음).
+
+**5. 쓰기**
+
+Ollama를 켜 두고 ChoiManga를 연다. 위쪽에 그래픽카드 이름과 "Ollama 연결됨"이 보이면 준비된 것이다. 그림 파일이나 폴더를 창에 끌어다 놓으면 번역을 시작하고, 번역본은 원본 폴더 옆 `<폴더이름>_ko`(파일 하나면 같은 폴더 안 `ko`)에 저장된다.
+
 ## 엔진 (`engine\`)
 
 한 장을 이렇게 처리한다. 모두 로컬이고, 모델은 `setup.ps1`이 처음 한 번만 받는다.
