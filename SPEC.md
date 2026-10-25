@@ -5,7 +5,7 @@
 ## 구성
 
 - `engine\` Python 엔진 (이미 있음, 손대지 않는다). `engine\.venv\Scripts\python.exe -m choimanga.server`를 작업 폴더 `engine\`에서 띄우면 표준 입출력으로 JSON 한 줄씩 주고받는다. 네트워크 포트 없음. 번역은 Ollama(127.0.0.1:11434)만 부른다.
-- `app\` Tauri 2 + React 19 + TypeScript 앱 (새로 만든다). 구조와 디자인은 `C:\Users\main\Desktop\choisave\desktop`(TDS, pnpm은 `corepack pnpm`)을 따른다.
+- `app\` Tauri 2 + React 19 + TypeScript 앱 (새로 만든다). 구조와 디자인은 같은 작성자의 ChoiSave 데스크톱 앱(TDS, pnpm은 `corepack pnpm`)을 따른다.
 
 ## 엔진 규약 (engine\choimanga\server.py)
 
@@ -29,12 +29,12 @@
 
 ## 화면 (TDS, 라이트·다크, 창 최소 960x640)
 
-1. 위 막대: "파일 넣기", "폴더 넣기" 버튼과 엔진 상태(GPU 이름, Ollama 연결 여부). Ollama가 꺼져 있으면 "Ollama 켜기" 버튼(`C:\Users\main\AppData\Local\Programs\Ollama\ollama app.exe`를 분리된 프로세스로 실행).
+1. 위 막대: "파일 넣기", "폴더 넣기" 버튼과 엔진 상태(GPU 이름, Ollama 연결 여부). Ollama가 꺼져 있으면 "Ollama 켜기" 버튼(`%LOCALAPPDATA%\Programs\Ollama\ollama app.exe`를 분리된 프로세스로 실행).
 2. 창 어디에 끌어다 놓아도 추가된다. 폴더는 하위 폴더까지 jpg·jpeg·png·webp를 자연 정렬(1, 2, 10)로 넣는다.
 3. 왼쪽 목록: 썸네일, 파일 이름, 상태(대기, 글자 찾는 중, 읽는 중, 번역 중, 지우는 중, 쓰는 중, 완료, 실패와 이유). 위에 전체 진행(완료/전체)과 "시작", "멈추기"(지금 장까지 하고 멈춤), "끝난 것 지우기". 넣으면 바로 시작하는 설정이 기본 켜짐.
 4. 오른쪽 보기: 고른 장을 화면에 맞춰 보여 주고 "번역본/원본" 전환(번역 전이면 원본만). 아래(또는 옆)에 대사 목록: 일본어(작게, 흐린 글씨)와 한국어 입력란. 고치고 "다시 쓰기"를 누르면 retypeset 후 그림을 새로 읽는다(캐시 무효화). 대사를 고르면 그림에서 그 상자를 은은한 채움으로 표시.
 5. 글자 크기: 아주 작게 0.7, 작게 0.82, 보통 0.92, 크게 1.05 단계 선택. 바꾸면 현재 장에 바로 다시 쓰기, 이후 장에도 적용(설정에 기억).
-6. 설정 화면: 번역 모델(엔진 status의 models 중), 글꼴(fonts 목록, 미리보기 글자 "다녀왔어!"), 저장 위치(기본: 원본 폴더 옆 `<폴더이름>_ko`, 파일 하나면 원본 폴더 안 `ko` 폴더; 또는 고정 폴더), 넣으면 바로 시작, 엔진 폴더(기본 `C:\Users\main\Desktop\choimanga\engine`). 설정은 앱 데이터 폴더 JSON.
+6. 설정 화면: 번역 모델(엔진 status의 models 중), 글꼴(fonts 목록, 미리보기 글자 "다녀왔어!"), 저장 위치(기본: 원본 폴더 옆 `<폴더이름>_ko`, 파일 하나면 원본 폴더 안 `ko` 폴더; 또는 고정 폴더), 넣으면 바로 시작, 엔진 폴더(기본 `%USERPROFILE%\Desktop\choimanga\engine`). 설정은 앱 데이터 폴더 JSON.
 7. 완료된 장에서 "폴더 열기"(탐색기에서 출력 파일 선택).
 
 ## 규칙

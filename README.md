@@ -22,8 +22,11 @@ RTX 5070 Ti에서 한 장 3~15초(첫 장은 모델 올리느라 더). torch 2.1
 
 ## 시험 그림 (`engine\samples\`)
 
-`p1.jpg`·`p2.jpg`(직접 만든 말풍선·설명문), `koma_orig.jpg`·`sewing.jpg`(1953년 4컷, 퍼블릭 도메인), `biwasshi.jpg`(ビワッシー 4컷, CC BY-SA 4.0), `aso.png`(아소 유타카 4컷 원화, CC0, 대사 없음). 모두 Wikimedia Commons.
+- `p1.jpg`, `p2.jpg`: 직접 만든 말풍선과 설명문.
+- `sewing.jpg`, `koma_orig.jpg`(그 일부): 1953년 4컷 「ハツ子さん」, 퍼블릭 도메인. [Commons](https://commons.wikimedia.org/wiki/File:4-frame_comic_strip_about_sewing_mashine_1953.jpg)
+- `biwasshi.jpg`: 「ビワッシー４コママンガ」, 작가 松井高, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). [Commons](https://commons.wikimedia.org/wiki/File:%E3%83%93%E3%83%AF%E3%83%83%E3%82%B7%E3%83%BC%EF%BC%94%E3%82%B3%E3%83%9E%E3%83%9E%E3%83%B3%E3%82%AC.jpg). 이 파일은 저장소의 MIT 라이선스가 아니라 CC BY-SA 4.0을 따른다.
+- `aso.png`: 아소 유타카(麻生豊) 4컷 원화, CC0, 대사 없음. [Commons](https://commons.wikimedia.org/wiki/File:%E9%BA%BB%E7%94%9F%E8%B1%8A%E3%80%8C%E9%99%BD%E5%A4%AA%E5%90%9B%EF%BC%88%E3%81%8C%E3%81%A3%E3%81%A1%E3%82%83%E3%82%93%EF%BC%89%E5%8E%9F%E7%94%BB%E3%80%8D%E3%82%88%E3%82%8A.png)
 
-## 라이선스 메모
+## 라이선스
 
-comic-text-detector 모델(manga-image-translator 배포, GPL-3.0 저장소), manga-ocr(Apache-2.0), big-lama(Apache-2.0), 맑은 고딕(Windows 기본 글꼴). 개인용으로만 쓴다.
+코드는 MIT(`LICENSE`). 모델은 저장소에 없고 `setup.ps1`이 받는다: comic-text-detector(manga-image-translator 배포, GPL-3.0), manga-ocr-base(Apache-2.0), big-lama(Apache-2.0). 번역은 사용자가 Ollama에 둔 모델을 쓴다. 기본 글꼴은 Windows의 맑은 고딕.
